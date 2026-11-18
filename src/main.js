@@ -235,7 +235,6 @@ function downloadOne(item) {
   setTimeout(() => URL.revokeObjectURL(url), 30000);
 }
 
-dropzone.addEventListener('click', () => fileInput.click());
 dropzone.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault();
