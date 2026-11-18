@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101114" />
+    <meta name="description" content="Losslessly optimize PNG images locally in your browser with Oxipng WebAssembly." />
+    <title>Oxipng Studio — PNG Optimizer</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Oxipng Studio home">
+          <span class="brand-mark">O</span>
+          <span>oxipng<span class="brand-muted"> studio</span></span>
+        </a>
+        <span class="local-pill"><span class="live-dot"></span> Runs locally</span>
+      </header>
+
+      <main class="shell">
+        <section class="intro">
+          <div class="eyebrow"><span class="eyebrow-line"></span> PNG OPTIMIZATION, IN YOUR BROWSER</div>
+          <h1>Smaller PNGs.<br><span>No quality loss.</span></h1>
+          <p class="lead">Powered by Oxipng WebAssembly. Your images stay on your device — nothing gets uploaded.</p>
+        </section>
+
+        <section class="workspace">
+          <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Choose or drop PNG files">
+            <input id="fileInput" type="file" accept="image/png,.png" multiple hidden />
+            <div class="upload-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15.5v3A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="drop-title">Drop your PNG files here</div>
+            <div class="drop-subtitle">or <span>browse files</span> · Multiple files supported</div>
+            <div class="file-limit">PNG images only</div>
+          </div>
+
+          <div class="settings-row">
+            <div class="setting-copy">
+              <label for="level">Compression level</label>
+              <p>Higher levels can take longer and may save more.</p>
+            </div>
+            <div class="level-control">
+              <select id="level" aria-label="Compression level">
+                <option value="1">1 · Fast</option>
+                <option value="2" selected>2 · Balanced</option>
+                <option value="3">3 · Good</option>
+                <option value="4">4 · Strong</option>
+                <option value="5">5 · Very strong</option>
+                <option value="6">6 · Maximum</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="settings-note">
+            <span class="note-icon">i</span>
+            <span>Pixel data is kept lossless. Transparent-pixel color optimization is disabled to preserve exact decoded pixels.</span>
+          </div>
+
+          <div id="queueSection" class="queue-section hidden">
+            <div class="queue-heading">
+              <div><span class="section-title">Your files</span><span id="fileCount" class="count">0 files</span></div>
+              <button id="clearButton" class="text-button" type="button">Clear all</button>
+            </div>
+            <div id="fileList" class="file-list"></div>
+          </div>
+
+          <div class="actions">
+            <button id="optimizeButton" class="primary-button" type="button" disabled>
+              <span class="button-icon">✦</span> Optimize PNGs
+            </button>
+            <button id="downloadZipButton" class="secondary-button" type="button" disabled>Download all (.zip)</button>
+          </div>
+          <div id="status" class="status" role="status" aria-live="polite">Choose PNG files to begin.</div>
+        </section>
+
+        <section id="summary" class="summary hidden">
+          <div class="summary-card">
+            <div class="summary-label">TOTAL SAVED</div>
+            <div id="savedValue" class="summary-value">—</div>
+            <div id="savedCaption" class="summary-caption">Across optimized files</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">ORIGINAL SIZE</div>
+            <div id="originalValue" class="summary-value">—</div>
+            <div class="summary-caption">Before optimization</div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-label">FINAL SIZE</div>
+            <div id="finalValue" class="summary-value">—</div>
+            <div class="summary-caption">Ready to download</div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div><span class="footer-dot"></span> Private by design · Processed on your device</div>
+          <div>Powered by <a href="https://github.com/oxipng/oxipng" target="_blank" rel="noreferrer">Oxipng</a> + WebAssembly</div>
+        </footer>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
