@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#101114" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d0f12" />
     <meta name="description" content="Losslessly optimize PNG images locally in your browser with Oxipng WebAssembly." />
     <title>Oxipng Studio — PNG Optimizer</title>
   </head>
@@ -25,20 +25,21 @@
         </section>
 
         <section class="workspace">
-          <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Choose or drop PNG files">
-            <input id="fileInput" type="file" accept="image/png,.png" multiple hidden />
+          <label id="dropzone" class="dropzone" for="fileInput" tabindex="0" aria-label="Choose or drop PNG files">
+            <input id="fileInput" class="native-file-input" type="file" accept="image/png,image/*" multiple />
             <div class="upload-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15.5v3A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15.5v3A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="drop-title">Drop your PNG files here</div>
-            <div class="drop-subtitle">or <span>browse files</span> · Multiple files supported</div>
-            <div class="file-limit">PNG images only</div>
-          </div>
+            <div class="drop-subtitle">Tap to <span>browse files</span> or Photo Library · Batch supported</div>
+            <span class="browse-pill">Choose PNG files</span>
+            <div class="file-limit">Lossless PNG optimization · Processed 100% offline</div>
+          </label>
 
           <div class="settings-row">
             <div class="setting-copy">
               <label for="level">Compression level</label>
-              <p>Higher levels can take longer and may save more.</p>
+              <p>Higher levels test more deflate filters and may save more.</p>
             </div>
             <div class="level-control">
               <select id="level" aria-label="Compression level">
@@ -83,12 +84,12 @@
           <div class="summary-card">
             <div class="summary-label">ORIGINAL SIZE</div>
             <div id="originalValue" class="summary-value">—</div>
-            <div class="summary-caption">Before optimization</div>
+            <div id="originalCaption" class="summary-caption">Before optimization</div>
           </div>
           <div class="summary-card">
             <div class="summary-label">FINAL SIZE</div>
             <div id="finalValue" class="summary-value">—</div>
-            <div class="summary-caption">Ready to download</div>
+            <div id="finalCaption" class="summary-caption">Ready to download</div>
           </div>
         </section>
 
@@ -100,4 +101,4 @@
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
-</html>
+  </html>
